@@ -6,25 +6,14 @@ namespace Automata
     {
         private readonly Func<T, bool> _p;
 
-        private State<T> _sourceState;
-        private State<T> _targetState;
-
         public MutableTransition(Func<T, bool> predicate)
         {
             _p = predicate;
         }
 
-        public State<T> Source
-        {
-            get { return _sourceState; }
-            set { _sourceState = value; }
-        }
+        public IAmState<T> Source { get; set; }
 
-        public State<T> Target
-        {
-            get { return _targetState; }
-            set { _targetState = value; }
-        }
+        public IAmState<T> Target { get; set; }
 
         public bool Evaluate(T t)
         {

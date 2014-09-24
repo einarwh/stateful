@@ -2,6 +2,11 @@
 
 namespace Automata
 {
+    public class ActionAccepter<T>
+    {
+        
+    }
+
     public class TransitionAccepter<T>
     {
         private readonly State<T> _fromState;

@@ -6,6 +6,6 @@ namespace Automata
     {
         string Name { get; }
 
-        IEnumerable<Transition<T>> Transitions { get; }
+        IEnumerable<IAmTransition<T>> Transitions { get; }
     }
 }

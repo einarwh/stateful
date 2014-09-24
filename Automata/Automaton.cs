@@ -2,16 +2,16 @@
 
 namespace Automata
 {
-    class Automaton<T> : IAmMachine<T>
+    public class Automaton<T> : IAmMachine<T>
     {
-        private State<T> _state;
+        private IAmState<T> _state;
 
-        public Automaton(State<T> startState)
+        public Automaton(IAmState<T> startState)
         {
             _state = startState;
         }
 
-        public State<T> State
+        public IAmState<T> State
         {
             get
             {

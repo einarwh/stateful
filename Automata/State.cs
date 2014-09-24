@@ -29,7 +29,7 @@ namespace Automata
             _transitions.Add(t);
         }
 
-        public IEnumerable<Transition<T>> Transitions
+        public IEnumerable<IAmTransition<T>> Transitions
         {
             get
             {

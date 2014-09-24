@@ -6,7 +6,7 @@ namespace Automata
     {
         private readonly Func<T, bool> _p;
 
-        private readonly State<T> _targetState;
+        private readonly IAmState<T> _targetState;
 
         public Transition(Func<T, bool> predicate, State<T> targetState)
         {
@@ -14,7 +14,7 @@ namespace Automata
             _targetState = targetState;
         }
 
-        public State<T> Target
+        public IAmState<T> Target
         {
             get
             {

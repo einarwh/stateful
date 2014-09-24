@@ -4,6 +4,6 @@ namespace Automata
     {
         bool Evaluate(T t);
 
-        State<T> Target { get; }
+        IAmState<T> Target { get; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IAmMachine<T>
     {
-        State<T> State { get; }
+        IAmState<T> State { get; }
 
         void Accept(T input);
     }

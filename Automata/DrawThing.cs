@@ -43,14 +43,14 @@ namespace Automata
 
         public Image CreateGraphImage(string s)
         {
-            const string Gvpath = @"C:\tools\Graphviz2.38\bin";
+            const string graphVizPath = @"C:\tools\Graphviz2.38\bin";
             var baseFileName = string.Format("g-{0}", DateTime.UtcNow.Ticks);
             var dotFileName = baseFileName + ".txt";
-            var dotFilePath = Path.Combine(Gvpath, dotFileName);
+            var dotFilePath = Path.Combine(graphVizPath, dotFileName);
             File.WriteAllText(dotFilePath, s);
             var startInfo = new ProcessStartInfo
                                 {
-                                    WorkingDirectory = Gvpath,
+                                    WorkingDirectory = graphVizPath,
                                     FileName = "dot.exe",
                                     Arguments = string.Format("-Tpng -O {0}", dotFilePath)
                                 };
