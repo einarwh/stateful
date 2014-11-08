@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Automata
 {
@@ -35,6 +36,7 @@ namespace Automata
                         return;
                     }
                 }
+                throw new Exception("Can not accept input in state: " + _state.Name);
             }
         }
     }
