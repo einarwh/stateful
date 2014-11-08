@@ -28,6 +28,10 @@ namespace Automata
                     if (t.Evaluate(input))
                     {
                         _state = t.Target;
+                        if (_state.Action != null)
+                        {
+                            _state.Action();
+                        }
                         return;
                     }
                 }
