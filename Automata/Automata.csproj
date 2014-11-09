@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DelayedAutomaton.cs" />
     <Compile Include="Automaton.cs" />
     <Compile Include="DrawThing.cs" />
     <Compile Include="Examples.cs" />
