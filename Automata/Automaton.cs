@@ -22,6 +22,11 @@ namespace Automata
 
         public void Accept(T input)
         {
+            Accept(input, () => { });
+        }
+
+        public void Accept(T input, Action action)
+        {
             if (_state.Transitions.Any())
             {
                 foreach (var t in _state.Transitions)
@@ -29,6 +34,7 @@ namespace Automata
                     if (t.Evaluate(input))
                     {
                         _state = t.Target;
+                        action();
                         if (t.Action != null)
                         {
                             t.Action();
