@@ -23,6 +23,16 @@ namespace Automata
             _fromState.AddTransition(new Transition<T>(p, _toState));
         }
 
+        public void On(Func<T, bool> p, Action action)
+        {
+            _fromState.AddTransition(new Transition<T>(p, _toState, action));
+        }
+
+        public void On(T t, Action action)
+        {
+            On(input => input.Equals(t), action);
+        }
+ 
         public void On(T t)
         {
             On(input => input.Equals(t));

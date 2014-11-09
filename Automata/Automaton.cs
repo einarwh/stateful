@@ -29,6 +29,10 @@ namespace Automata
                     if (t.Evaluate(input))
                     {
                         _state = t.Target;
+                        if (t.Action != null)
+                        {
+                            t.Action();
+                        }
                         if (_state.Action != null)
                         {
                             _state.Action();
@@ -36,8 +40,8 @@ namespace Automata
                         return;
                     }
                 }
-                throw new Exception("Can not accept input in state: " + _state.Name);
             }
+            throw new Exception("Can not accept input in state: " + _state.Name);
         }
     }
 }
