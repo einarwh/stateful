@@ -25,6 +25,14 @@ namespace Automata
             Accept(input, () => { });
         }
 
+        /// <summary>
+        /// Order of evaluation:
+        /// - action given to Accept method
+        /// - transition actions
+        /// - state actions
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="action"></param>
         public void Accept(T input, Action action)
         {
             if (_state.Transitions.Any())
