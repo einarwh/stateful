@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Automata
@@ -7,9 +8,23 @@ namespace Automata
     {
         private readonly string _name;
 
+        private readonly Action _action;
+
+        public Action Action
+        {
+            get { return _action; }
+        }
+
         public State(string name)
         {
             _name = name;
+           _action = () => {};
+        }
+
+        public State(string name, Action action)
+        {
+            _name = name;
+            _action = action;
         }
 
         public string Name

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Automata
 {
-    public class Automaton<T> : IAmMachine<T>
+    public class DelayedAutomaton<T> : IAmMachine<T>
     {
         private IAmState<T> _state;
 
-        public Automaton(IAmState<T> startState)
+        public DelayedAutomaton(IAmState<T> startState)
         {
             _state = startState;
         }
@@ -39,6 +41,8 @@ namespace Automata
             {
                 foreach (var t in _state.Transitions)
                 {
+                    // Allow more spirits in here
+                    Thread.Sleep(2000);
                     if (t.Evaluate(input))
                     {
                         _state = t.Target;

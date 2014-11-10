@@ -6,6 +6,12 @@ namespace Automata
     {
         private readonly Func<T, bool> _p;
 
+        public MutableTransition(Func<T, bool> predicate, Action action)
+        {
+            _p = predicate;
+            Action = action;
+        }
+
         public MutableTransition(Func<T, bool> predicate)
         {
             _p = predicate;
@@ -19,5 +25,7 @@ namespace Automata
         {
             return _p(t);
         }
+
+        public Action Action { get; private set; }
     }
 }
