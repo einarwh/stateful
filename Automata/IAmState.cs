@@ -7,7 +7,7 @@ namespace Automata
     {
         string Name { get; }
 
-        Action Action { get;  }
+        void Execute();
 
         IEnumerable<IAmTransition<T>> Transitions { get; }
     }

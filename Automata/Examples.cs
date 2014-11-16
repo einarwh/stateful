@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automata
 {
@@ -33,21 +31,21 @@ namespace Automata
 
         public static List<State<string>> SimpleBabyStates()
         {
-            var happy = new State<string>("happy");
+            var happy = new State<string>("nappy");
             var screaming = new State<string>("screaming");
             var sleeping = new State<string>("sleeping");
             var diaper = new State<string>("diaperchange");
 
-            happy.To(happy).On("tickle");
-            happy.To(screaming).On("hungry");
+            happy.To(happy).On("tickle").Do(() => Console.WriteLine("Giggle!"));
+            happy.To(screaming).On("hungry").Do(() => Console.WriteLine("Waah!"));
             //happy.To(screaming).On("sleepy");
-            happy.To(diaper).On("poo");
+            happy.To(diaper).On("poo").Do(() => Console.WriteLine("..."), () => { throw new Exception(); });
 
             screaming.To(sleeping).On("lullaby");
             //screaming.To(sleeping).On("milk");
             screaming.To(happy).On("rattle");
 
-            sleeping.To(screaming).On("wake");
+            sleeping.To(screaming).On("wake").Do(() => Console.WriteLine("Waaaaah! Wahaah!"));
 
             diaper.To(happy).On("change");
             diaper.To(screaming).On("lullaby");
@@ -66,7 +64,7 @@ namespace Automata
             var sleeping = new State<string>("sleeping");
             var diaper = new State<string>("diaperchange");
 
-            happy.To(happy).On("tickle");
+            happy.To(happy).On("tickle").Do(() => Console.WriteLine("Giggle"));
             happy.To(hungry).On("hungry");
             happy.To(sleepy).On("sleepy");
             happy.To(diaper).On("poo");
@@ -81,7 +79,7 @@ namespace Automata
             sleepy.To(sleepy).On("milk");
             sleepy.To(sleeping).On("lullaby");
 
-            sleeping.To(unhappy).On("wake");
+            sleeping.To(unhappy).On("wake").Do(() => Console.WriteLine("Waaaaah! Wahaah!"));
 
             teething.To(sleepy).On("sleepy");
             teething.To(diaper).On("poo");

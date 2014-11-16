@@ -47,14 +47,8 @@ namespace Automata
                     {
                         _state = t.Target;
                         action();
-                        if (t.Action != null)
-                        {
-                            t.Action();
-                        }
-                        if (_state.Action != null)
-                        {
-                            _state.Action();
-                        }
+                        t.Execute();
+                        _state.Execute();
                         return;
                     }
                 }

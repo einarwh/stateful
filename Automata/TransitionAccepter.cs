@@ -4,7 +4,17 @@ namespace Automata
 {
     public class ActionAccepter<T>
     {
-        
+        private Transition<T> _;
+
+        public ActionAccepter(Transition<T> transition)
+        {
+            _ = transition;
+        }
+
+        public void Do(params Action[] actions)
+        {
+            foreach (var a in actions) _.AddAction(a);
+        }
     }
 
     public class TransitionAccepter<T>
@@ -18,24 +28,28 @@ namespace Automata
             _toState = toState;
         }
 
-        public void On(Func<T, bool> p)
+        public ActionAccepter<T> On(Func<T, bool> p)
         {
-            _fromState.AddTransition(new Transition<T>(p, _toState));
+            var transition = new Transition<T>(p, _toState);    
+            _fromState.AddTransition(transition);
+            return new ActionAccepter<T>(transition);
         }
 
-        public void On(Func<T, bool> p, Action action)
+        public ActionAccepter<T> On(Func<T, bool> p, Action action)
         {
-            _fromState.AddTransition(new Transition<T>(p, _toState, action));
+            var transition = new Transition<T>(p, _toState, action);
+            _fromState.AddTransition(transition);
+            return new ActionAccepter<T>(transition);
         }
 
-        public void On(T t, Action action)
+        public ActionAccepter<T> On(T t, Action action)
         {
-            On(input => input.Equals(t), action);
+            return On(input => input.Equals(t), action);
         }
  
-        public void On(T t)
+        public ActionAccepter<T> On(T t)
         {
-            On(input => input.Equals(t));
+            return On(input => input.Equals(t));
         }
     }
 }

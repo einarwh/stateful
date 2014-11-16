@@ -6,7 +6,9 @@ namespace Automata
     {
         bool Evaluate(T t);
 
-        Action Action { get;}
+        void AddAction(Action a);
+
+        void Execute();
 
         IAmState<T> Target { get; }
     }

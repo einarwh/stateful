@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Automata
 {
@@ -8,17 +9,23 @@ namespace Automata
 
         private readonly IAmState<T> _targetState;
 
-        public Transition(Func<T, bool> predicate, State<T> targetState, Action action)
+        private readonly List<Action> _actions = new List<Action>(); 
+
+        public Transition(Func<T, bool> predicate, State<T> targetState, params Action[] actions)
         {
             _p = predicate;
             _targetState = targetState;
-            Action = action;
+            _actions.AddRange(actions);
         }
 
-        public Transition(Func<T, bool> predicate, State<T> targetState)
+        public void AddAction(Action a)
         {
-            _p = predicate;
-            _targetState = targetState;
+            _actions.Add(a);
+        }
+
+        public void Execute()
+        {
+            foreach (var a in _actions) a();
         }
 
         public IAmState<T> Target
@@ -33,7 +40,5 @@ namespace Automata
         {
             return _p(t);
         }
-
-        public Action Action { get; private set; }
     }
 }

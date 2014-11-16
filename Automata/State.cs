@@ -10,15 +10,9 @@ namespace Automata
 
         private readonly Action _action;
 
-        public Action Action
-        {
-            get { return _action; }
-        }
-
         public State(string name)
+            : this(name, () => { })
         {
-            _name = name;
-           _action = () => {};
         }
 
         public State(string name, Action action)
@@ -42,6 +36,11 @@ namespace Automata
         public void AddTransition(Transition<T> t)
         {
             _transitions.Add(t);
+        }
+
+        public void Execute()
+        {
+            if (_action != null) _action();
         }
 
         public IEnumerable<IAmTransition<T>> Transitions

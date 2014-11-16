@@ -18,8 +18,8 @@ void RunWith(List<State<string>> states) {
 	while (true) {
 		var s = Console.ReadLine().Trim();
 		if ("quit".Equals(s)) break;
-		machine.Accept(s);
 		Util.ClearResults();
+		machine.Accept(s);
 		str = thing.GetDotGraphString(machine, states);
 		img = thing.CreateGraphImage(str);
 		img.Dump();
